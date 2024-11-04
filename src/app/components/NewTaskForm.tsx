@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import db from "../lib/firebase";
+import Link from "next/link";
 
 const NewTaskForm = () => {
     
@@ -23,13 +24,21 @@ const NewTaskForm = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="m-auto w-1/4 p-5 mt-10 border rounded bg-gray-500 w-1/2 sm:w-1/4">
+    <div>
+      <form onSubmit={handleSubmit} className="m-auto w-1/2 p-5 mt-10 border rounded bg-gray-500 sm:w-1/4">
         <div>
           <label className="mb-2 block">Title</label>
           <input type="text" value={value} onChange={e => setValue(e.target.value)} className="text-gray-900 w-full"></input>
         </div>
         <button type="submit" className="p-2 border rounded hover:bg-slate-500 font-semibold mt-8">Add Task</button>
       </form>
+      </div>
+
+      <div className="text-center mt-10">
+        <Link href="/">
+        <button className='border rounded p-2 hover:bg-slate-500'>Back to List</button>
+        </Link>
+      </div>
     </div>
   );
 };
