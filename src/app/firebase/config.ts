@@ -1,5 +1,6 @@
-import { initializeApp } from "firebase/app";
+import { getApp, getApps, initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -11,6 +12,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-export default db;
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp(); //Workaround for server-side apps
+export const db = getFirestore(app);
+
+//Initialize Firebase Auth
+export const auth = getAuth(app);
