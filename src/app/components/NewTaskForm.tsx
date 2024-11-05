@@ -1,17 +1,20 @@
 'use client';
 import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
-import db from "../lib/firebase";
+import {db} from "../firebase/config";
 import Link from "next/link";
+import { useAuthState} from 'react-firebase-hooks/auth'
+import { auth } from "../firebase/config";
 
 const NewTaskForm = () => {
     
     const [value, setValue] = useState("");
+    const [user] = useAuthState(auth)
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const docRef = await addDoc(collection(db, 'tasks'), {
+            const docRef = await addDoc(collection(db, 'users', user?.email, 'tasks'), {
                 title: value
             });
             console.log("Document written with ID: ", docRef.id);
