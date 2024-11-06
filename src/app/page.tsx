@@ -18,7 +18,7 @@ const ToDoList = () => {
   return (
     <>
       <div className='mt-4 mr-4 text-right'>
-        <button className='border rounded p-2 hover:bg-slate-500'
+        <button className='border rounded p-2 hover:bg-gray-800'
          onClick={() => {
           signOut(auth)
         }}

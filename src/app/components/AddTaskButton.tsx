@@ -5,7 +5,7 @@ const AddTaskButton = () => {
   return (
     <div className='text-center mt-6'>
         <Link href="/newTask">
-        <button className='border rounded p-2 hover:bg-slate-500'>Add Task</button>
+        <button className='bg-orange-700 rounded text-gray-50 hover:bg-orange-600 p-2'>Add Task</button>
         </Link>
     </div>
   )

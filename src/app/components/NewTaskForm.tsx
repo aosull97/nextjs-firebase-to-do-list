@@ -28,18 +28,18 @@ const NewTaskForm = () => {
   return (
     <div>
     <div>
-      <form onSubmit={handleSubmit} className="m-auto w-1/2 p-5 mt-10 border rounded bg-gray-500 sm:w-1/4">
+      <form onSubmit={handleSubmit} className="m-auto w-1/2 p-5 mt-10 rounded bg-gray-800 shadow-xl sm:w-1/4">
         <div>
-          <label className="mb-2 block">Title</label>
-          <input type="text" value={value} onChange={e => setValue(e.target.value)} className="text-gray-900 w-full"></input>
+          <label className="mb-2 block text-gray-50">Task Name:</label>
+          <input type="text" value={value} onChange={e => setValue(e.target.value)} className="w-full p-1 mb-4 bg-gray-700 rounded outline-none text-gray-100 placeholder-gray-500"></input>
         </div>
-        <button type="submit" className="p-2 border rounded hover:bg-slate-500 font-semibold mt-8">Add Task</button>
+        <button type="submit" className="bg-orange-700 rounded text-gray-50 hover:bg-orange-600 p-2 mt-4">Add Task</button>
       </form>
       </div>
 
       <div className="text-center mt-10">
         <Link href="/">
-        <button className='border rounded p-2 hover:bg-slate-500'>Back to List</button>
+        <button className='border rounded p-2 hover:bg-gray-800'>Back to List</button>
         </Link>
       </div>
     </div>
