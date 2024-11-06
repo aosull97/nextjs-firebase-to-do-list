@@ -1,4 +1,4 @@
-'use client'; // AllTasksList is now a Client Component
+'use client';
 import { collection, getDocs } from "@firebase/firestore";
 import {db} from "../firebase/config";
 import DeleteTaskButton from "./DeleteTaskButton";
@@ -21,8 +21,9 @@ const AllTasksList = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       if (user) {
+        if (user.email) {
         try {
-          const collectionRef = collection(db, "users", user?.email, "tasks");
+          const collectionRef = collection(db, `users/${user.email}/tasks`);
           const tasksCollectionSnapshot = await getDocs(collectionRef);
           const tasksList: Task[] = tasksCollectionSnapshot.docs.map((doc) => ({
             id: doc.id,
@@ -33,8 +34,11 @@ const AllTasksList = () => {
         } catch (error) {
           console.error("Error fetching tasks:", error);
         }
+      } else {
+        console.log("User email not defined.")
       }
-    };
+    }
+  }
 
     fetchTasks(); // Call the async function inside useEffect
   }, [user]); //Add user as a dependency to ensure that the tasks are re-fetched whenever the user logs in or out
@@ -50,7 +54,7 @@ const AllTasksList = () => {
           <li key={task.id} className="p-2 border flex justify-between align-center ">
             {task.title}
             <div className="flex space-x-2 justify-center">
-              <EditTaskButton />
+              <EditTaskButton taskId= {task.id} taskTitle={task.title}/>
               <DeleteTaskButton taskID={task.id} onDelete={handleTaskDeleted} />
             </div>
           </li>

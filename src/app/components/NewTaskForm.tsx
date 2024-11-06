@@ -13,8 +13,10 @@ const NewTaskForm = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if(user?.email) { //Check if user.email is defined
         try {
-            const docRef = await addDoc(collection(db, 'users', user?.email, 'tasks'), {
+            const tasksCollectionRef = collection(db, `users/${user.email}/tasks`);
+            const docRef = await addDoc(tasksCollectionRef, {
                 title: value
             });
             console.log("Document written with ID: ", docRef.id);
@@ -23,7 +25,10 @@ const NewTaskForm = () => {
         } catch (e) {
             console.error("Error adding document: ", e);
         }
-    }   
+    }   else {
+      console.log("User email is undefined. Cannot add task")
+    }
+    };
 
   return (
     <div>

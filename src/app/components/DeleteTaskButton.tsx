@@ -16,7 +16,7 @@ const DeleteTaskButton = ({taskID, onDelete}: Props) => {
 
 
     const handleDelete = async () => {
-        const itemRef = doc(db, "users", user?.email, "tasks", taskID)
+        const itemRef = doc(db, `users/${user?.email}/tasks/taskID`)
         try {
             await deleteDoc(itemRef)
             alert('Task deleted')
