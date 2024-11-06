@@ -28,7 +28,7 @@ const DeleteTaskButton = ({taskID, onDelete}: Props) => {
 
   return (
     <div>
-        <button className='hover:text-red-600' title='Delete Task' onClick={handleDelete}>X</button>
+        <button className='hover:fill-red-600 h-5 w-5' title='Delete Task' onClick={handleDelete}><img src='images/delete.png' alt='Delete'/></button>
     </div>
   )
 }

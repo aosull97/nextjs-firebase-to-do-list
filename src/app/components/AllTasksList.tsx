@@ -2,6 +2,7 @@
 import { collection, getDocs } from "@firebase/firestore";
 import {db} from "../firebase/config";
 import DeleteTaskButton from "./DeleteTaskButton";
+import EditTaskButton from "./EditTaskButton";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
@@ -46,9 +47,12 @@ const AllTasksList = () => {
     <div>
       <ul className="text-left w-1/4 border m-auto mt-10">
         {tasks.map((task) => (
-          <li key={task.id} className="p-2 border flex justify-between">
+          <li key={task.id} className="p-2 border flex justify-between align-center ">
             {task.title}
-            <DeleteTaskButton taskID={task.id} onDelete={handleTaskDeleted} />
+            <div className="flex space-x-2 justify-center">
+              <EditTaskButton />
+              <DeleteTaskButton taskID={task.id} onDelete={handleTaskDeleted} />
+            </div>
           </li>
         ))}
       </ul>
