@@ -1,8 +1,8 @@
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase/config";
-import { doc, getDoc, setDoc, collection } from "@firebase/firestore";
+import { doc, getDoc, setDoc } from "@firebase/firestore";
 import { useEffect, useState } from "react";
-
+import Link from "next/link";
 
 
 const EditTaskForm = ({ taskId }: { taskId: string }) => {
@@ -70,6 +70,11 @@ const EditTaskForm = ({ taskId }: { taskId: string }) => {
             Update Task
           </button>
         </form>
+      </div>
+      <div className="text-center mt-10">
+        <Link href="/">
+        <button className='border rounded p-2 hover:bg-gray-800'>Back to List</button>
+        </Link>
       </div>
     </div>
   );
