@@ -3,20 +3,27 @@ import AddTaskButton from './components/AddTaskButton'
 import AllTasksList from './components/AllTasksList'
 import { useAuthState} from 'react-firebase-hooks/auth'
 import { auth } from './firebase/config'
-import { useRouter } from 'next/navigation'
 import { signOut } from 'firebase/auth'
 
+import RedirectToLogin from './redirect'
+
 const ToDoList = () => {
-
   const [user] = useAuthState(auth)
-  const router = useRouter()
 
-  if (!user) {
-    return router.push('/sign-in') //Adding return here stops the home page from flashing for a few seconds when the user is redirected
+  // Trigger the redirect before rendering anything to the client
+  // This prevents the homepage from flashing if a user tries to access it without being logged in
+
+  const ServerSideRedirect = () => {
+    if (!user) {
+      RedirectToLogin();
+    }
+    return null;
   }
+
 
   return (
     <>
+    <ServerSideRedirect /> // Call the ServerSideRedirect to check if the user is logged in before rendering anything to the client
       <div className='mt-4 mr-4 text-right'>
         <button className='border rounded p-2 hover:bg-gray-800'
 
