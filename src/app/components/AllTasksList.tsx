@@ -55,7 +55,7 @@ const AllTasksList = () => {
             {task.title}
             <div className="flex space-x-2 justify-center">
               <EditTaskButton taskId= {task.id} taskTitle={task.title}/>
-              <DeleteTaskButton taskID={task.id} onDelete={handleTaskDeleted} />
+              <DeleteTaskButton taskId={task.id} onDelete={handleTaskDeleted} />
             </div>
           </li>
         ))}

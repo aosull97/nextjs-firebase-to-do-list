@@ -7,20 +7,21 @@ import { auth } from '../firebase/config';
 
 
 interface Props {
-    taskID: string;
+    taskId: string;
     onDelete: (taskId: string) => void; //Callback function prop
 }
 
-const DeleteTaskButton = ({taskID, onDelete}: Props) => {
+const DeleteTaskButton = ({taskId, onDelete}: Props) => {
     const [user] = useAuthState(auth)
 
 
     const handleDelete = async () => {
-        const itemRef = doc(db, `users/${user?.email}/tasks/taskID`)
+        const itemRef = doc(db, `users/${user?.email}/tasks/${taskId}`)
+        console.log(itemRef)
         try {
             await deleteDoc(itemRef)
             alert('Task deleted')
-            onDelete(taskID)
+            onDelete(taskId)
         } catch (e) {
             console.error("Error deleting document: ", e);
         }
