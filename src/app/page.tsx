@@ -33,7 +33,7 @@ const ToDoList = () => {
           >Logout</button>
       </div>
       <div>
-      <h1 className='text-center text-3xl font-bold underline mt-5'>My To Do List</h1>
+      <h1 className='text-center text-3xl underline underline-offset-4 decoration-1 mt-5'>My To Do List</h1>
       </div>
       <div>
         <AllTasksList />

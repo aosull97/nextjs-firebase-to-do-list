@@ -10,7 +10,6 @@ import { auth } from "../firebase/config";
 interface Task {
   id: string;
   title: string;
-  // Add other properties as needed (e.g., completed: boolean)
 }
 
 const AllTasksList = () => {
@@ -28,8 +27,8 @@ const AllTasksList = () => {
           const tasksList: Task[] = tasksCollectionSnapshot.docs.map((doc) => ({
             id: doc.id,
             title: doc.data().title,
-            // Add other properties as needed (e.g., completed: doc.data().completed)
           }));
+
           setTasks(tasksList);
         } catch (error) {
           console.error("Error fetching tasks:", error);
@@ -49,9 +48,9 @@ const AllTasksList = () => {
 
   return (
     <div>
-      <ul className="text-left w-1/4 border m-auto mt-10">
+      <ul className="text-left w-1/4 border border-gray-600 m-auto mt-10">
         {tasks.map((task) => (
-          <li key={task.id} className="p-2 border flex justify-between align-center ">
+          <li key={task.id} className="p-2 border border-gray-600 flex justify-between align-center bg-gray-800">
             {task.title}
             <div className="flex space-x-2 justify-center">
               <EditTaskButton taskId= {task.id} taskTitle={task.title}/>
