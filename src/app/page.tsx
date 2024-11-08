@@ -23,7 +23,7 @@ const ToDoList = () => {
 
   return (
     <>
-    <ServerSideRedirect /> // Call the ServerSideRedirect to check if the user is logged in before rendering anything to the client
+    <ServerSideRedirect /> {/*Call the ServerSideRedirect to check if the user is logged in before rendering anything to the client*/}
       <div className='mt-4 mr-4 text-right'>
         <button className='border rounded p-2 hover:bg-gray-800'
 
